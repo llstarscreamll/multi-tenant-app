@@ -1,0 +1,10 @@
+<dynamic-form-fields
+	*ngIf="tenantFormModel && tenantFormData"
+	class="dynamic-form-fields row"
+	[form]="tenantForm"
+	[formModel]="tenantFormModel"
+	[formData]="tenantFormData"
+	[errors]="errors"
+	[visibility]="formType"
+	[disabled]="formType == 'details'"
+	></dynamic-form-fields>
