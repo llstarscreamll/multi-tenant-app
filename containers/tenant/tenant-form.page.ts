@@ -60,7 +60,9 @@ export class TenantFormPage extends TenantAbstractPage implements OnInit, OnDest
   private patchForm() {
     this.selectedTenant$.subscribe((tenant) => {
       if (tenant != null && tenant.id && tenant.id.includes(this.id)) {
-        this.tenantForm.patchValue(tenant);
+        this.tenantForm.patchValue({...tenant, modules: []});
+        let modulesIds = tenant.modules ? tenant.modules.data.map(val => val.id) : [];
+        this.tenantForm.patchValue({modules: modulesIds});
         this.formConfigured = true;
       }
     });
