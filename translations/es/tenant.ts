@@ -50,6 +50,7 @@ export const TENANT = {
       'tenants.password': 'Contraseña BD',
       'tenants.prefix': 'Prefijo BD',
       'tenants.meta': 'Metadatos',
+      'tenants.modules': 'Módulos',
       'tenants.created_at': 'Creado el',
       'tenants.updated_at': 'Actualizado el',
       'tenants.deleted_at': 'Eliminado el',

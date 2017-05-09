@@ -51,6 +51,16 @@ export class TenantService extends Service {
       .catch(this.handleError);
   }
 
+  public createByName(data: Object) {
+    this.setAuthorizationHeader();
+    console.log(data);
+
+    return this.http
+      .post(this.apiEndpoint('create-by-name'), data, { headers: this.headers })
+      .map(res => { return res.json().data })
+      .catch(this.handleError);
+  }
+
   public getTenantFormModel() {
     this.setAuthorizationHeader();
 

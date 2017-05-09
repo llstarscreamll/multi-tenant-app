@@ -107,6 +107,23 @@ export class TenantEffects extends Effects {
       });
 
     @Effect()
+    createByName$: Observable<Action> = this.actions$
+      .ofType(tenant.ActionTypes.CREATE_TENANT_BY_NAME)
+      .map((action: Action) => action.payload)
+      .switchMap((data) => {
+        return this.tenantService.createByName(data)
+          .mergeMap((data: Tenant) => {
+            return [
+              new tenant.SetSelectedAction(data),
+              new appMsgActions.Flash(this.tenantService.getSuccessMessage('create')),
+              new tenant.LoadAction(),
+              // go(['tenant', data.id, 'details']), // don't redirect
+            ];
+          })
+          .catch((error: AppMessage) => this.handleError(error));
+      });
+
+    @Effect()
     update$: Observable<Action> = this.actions$
       .ofType(tenant.ActionTypes.UPDATE_TENANT)
       .map((action: Action) => action.payload)

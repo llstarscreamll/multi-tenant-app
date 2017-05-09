@@ -41,6 +41,7 @@ export abstract class TenantAbstractPage {
 
   protected formModelSubscription$: Subscription;
   protected activedRouteSubscription$: Subscription;
+  public formConfigured: boolean = false;
 
   protected abstract title: string;
   protected deleteAlertOptions: any;

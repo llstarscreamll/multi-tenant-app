@@ -50,6 +50,10 @@ export function reducer(state = initialState, action: tenant.Actions): State {
       return { ...state, loading: true };
     }
 
+    case tenant.ActionTypes.CREATE_TENANT_BY_NAME: {
+      return { ...state, loading: true };
+    }
+
     case tenant.ActionTypes.GET_TENANT: {
       return { ...state, loading: true };
     }

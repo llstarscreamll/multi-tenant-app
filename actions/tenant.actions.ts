@@ -11,6 +11,7 @@ export const ActionTypes = {
 	GET_TENANT_FORM_MODEL: type('[Tenant] Get Form Model'),
 	GET_TENANT_FORM_MODEL_SUCCESS: type('[Tenant] Get Form Model Success'),
 	CREATE_TENANT: type('[Tenant] Create'),
+	CREATE_TENANT_BY_NAME: type('[Tenant] Create by Name'),
 	GET_TENANT: type('[Tenant] Get'),
 	UPDATE_TENANT: type('[Tenant] Update'),
 	DELETE_TENANT: type('[Tenant] Delete'),
@@ -56,6 +57,12 @@ export class GetAction implements Action {
 
 export class CreateAction implements Action {
 	type = ActionTypes.CREATE_TENANT;
+	public constructor(public payload: Object) { }
+}
+
+
+export class CreateByNameAction implements Action {
+	type = ActionTypes.CREATE_TENANT_BY_NAME;
 	public constructor(public payload: Object) { }
 }
 
