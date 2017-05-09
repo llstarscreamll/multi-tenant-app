@@ -8,11 +8,11 @@ import { DynamicFormModule } from './../dynamic-form/dynamic-form.module';
 import { CoreSharedModule } from './../core/core.shared.module';
 import { environment } from './../../environments/environment';
 import { CONTAINERS } from './containers';
-import { COMPONENTS } from './components';
 import { ES } from './translations/es';
 import { EFFECTS } from './effects';
 import { SERVICES } from './services';
 import { TenantRoutingModule } from './tenant-routing.module';
+import { TenantSharedModule } from './tenant-shared.module';
 
 @NgModule({
   imports: [
@@ -24,10 +24,10 @@ import { TenantRoutingModule } from './tenant-routing.module';
     DynamicFormModule,
     CoreSharedModule,
     TenantRoutingModule,
+    TenantSharedModule,
     ...EFFECTS,
   ],
   declarations: [
-    ...COMPONENTS,
     ...CONTAINERS,
   ],
   providers: [
