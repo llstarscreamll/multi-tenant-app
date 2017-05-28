@@ -26,7 +26,7 @@ export class TenantEffects extends Effects {
     private store: Store<fromRoot.State>
   ) { super(); }
 
-  protected setErrors(error: AppMessage): Action {
+  protected setMessages(error: AppMessage): Action {
     return new tenant.SetErrorsAction(error.errors);
   }
 

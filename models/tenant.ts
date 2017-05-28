@@ -13,7 +13,7 @@ export class Tenant {
 	port: string;
 	database: string;
 	username: string;
-	password: string;
+	password?: string;
 	prefix: string;
 	meta: string[];
 	modules?: {data: Array<Module>};
