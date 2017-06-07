@@ -4,14 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Service } from './../../core/services/abstract.service';
+import { AbstractService } from './../../core/services/abstract.service';
 import { LocalStorageService } from './../../core/services/local-storage.service';
 import { TenantPagination } from './../models/tenantPagination';
 import { Tenant } from './../models/tenant';
 import { AppMessage } from './../../core/models/appMessage';
 
 @Injectable()
-export class TenantService extends Service {
+export class TenantService extends AbstractService {
 	
 	protected API_ENDPOINT: string = 'v1/tenants';
   public langNamespace: string = 'TENANT';
