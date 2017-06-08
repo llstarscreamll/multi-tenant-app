@@ -2,9 +2,14 @@ import { Routes } from '@angular/router';
 
 import { AuthGuard } from './../../auth/guards/auth.guard';
 
-import { ListAndSearchTenantsPage } from './../containers/tenant/list-and-search-tenants.page';
-import { TenantFormPage } from './../containers/tenant/tenant-form.page';
+import { ListAndSearchTenantsPage } from './../pages/tenant/list-and-search-tenants.page';
+import { TenantFormPage } from './../pages/tenant/tenant-form.page';
 
+/**
+ * TenantRoutes.
+ *
+ * @author  [name] <[<email address>]>
+ */
 export const TenantRoutes: Routes = [
 	{
 	  path: 'tenant', canActivate: [AuthGuard], children: [
