@@ -8,7 +8,7 @@ import { forOwn, isNull } from 'lodash';
 
 import { FormModelParserService } from './../../../dynamic-form/services/form-model-parser.service';
 import { AppMessage } from './../../../core/models/appMessage';
-import * as appMessage from './../../../core/reducers/app-message.reducer';
+
 import * as fromRoot from './../../../reducers';
 
 import * as tenantActions from './../../actions/tenant.actions';
@@ -157,8 +157,8 @@ export abstract class TenantAbstractComponent {
     this.formModel$ = this.store.select(fromRoot.getTenantFormModel);
     // this.formData$ = this.store.select(fromRoot.getTenantFormData);
     this.searchQuery$ = this.store.select(fromRoot.getTenantSearchQuery);
-    this.itemsPagination$ = this.store.select(fromRoot.getTenantsPagination);
-    this.selectedItem$ = this.store.select(fromRoot.getSelectedTenant);
+    this.itemsPagination$ = this.store.select(fromRoot.getTenantPagination);
+    this.selectedItem$ = this.store.select(fromRoot.getTenantSelected);
     this.loading$ = this.store.select(fromRoot.getTenantLoading);
     this.messages$ = this.store.select(fromRoot.getTenantMessages);
 

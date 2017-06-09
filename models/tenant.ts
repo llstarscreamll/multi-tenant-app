@@ -13,7 +13,7 @@ export class Tenant {
 	username: string;
 	password?: string;
 	prefix: string;
-	meta: string;
+	meta: string[] | string;
 	created_at: string;
 	updated_at: string;
 	deleted_at: string;

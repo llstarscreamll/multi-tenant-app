@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { go } from '@ngrx/router-store';
 
 import { FormModelParserService } from './../../../dynamic-form/services/form-model-parser.service';
-import * as appMessage from './../../../core/reducers/app-message.reducer';
+
 import * as fromRoot from './../../../reducers';
 import * as tenantReducer from './../../reducers/tenant.reducer';
 import * as tenantActions from './../../actions/tenant.actions';

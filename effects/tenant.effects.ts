@@ -8,7 +8,6 @@ import { empty } from 'rxjs/observable/empty';
 import 'rxjs/add/operator/withLatestFrom';
 
 import * as fromRoot from './../../reducers';
-import * as appMsgActions from './../../core/actions/app-message.actions';
 import * as tenant from './../actions/tenant.actions';
 import { Tenant } from './../models/tenant';
 import { TenantPagination } from './../models/tenantPagination';
