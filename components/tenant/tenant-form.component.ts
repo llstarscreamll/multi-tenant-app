@@ -103,7 +103,7 @@ export class TenantFormComponent extends TenantAbstractComponent implements OnIn
     if (this.formType == 'details' || this.formType == 'edit') {
       this.selectedItemSubscription$ = this.selectedItem$
         .subscribe((tenant) => {
-          if (tenant != null && tenant.id && tenant.id.includes(this.selectedItemId)) {
+          if (tenant != null && tenant.id && tenant.id == this.selectedItemId) {
             this.form.patchValue(tenant);
             this.formReady = true;
             this.selectedItemReady = true;
