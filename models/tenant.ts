@@ -4,7 +4,7 @@
  * @author  [name] <[<email address>]>
  */
 export class Tenant {
-	id: string;
+	id: string | number;
 	name: string;
 	driver: string;
 	host: string;

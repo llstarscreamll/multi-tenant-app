@@ -226,13 +226,16 @@ describe('TenantFormComponent', () => {
     fixture.detectChanges();
     tick();
     
-    expect(component.form.valid).toBe(false);
-    expect(fixture.nativeElement.querySelector('form button.create-row').disabled).toBe(true);
-    component.form.patchValue(testModel);
+    expect(component.form.valid).toBe(false, 'form init as invalid');
+    expect(fixture.nativeElement.querySelector('form button.create-row').disabled).toBe(true, 'create form btn disabled');
+    
+    component.form.patchValue({...testModel, password: 'foo_password'});
+    component.form.markAsDirty();
+    component.form.markAsTouched();
 
     fixture.detectChanges();
 
-    expect(component.form.valid).toBe(true);
+    expect(component.form.valid).toBe(true, 'form is now valid');
     fixture.nativeElement.querySelector('form button.create-row').click();
 
     fixture.detectChanges();
@@ -253,11 +256,12 @@ describe('TenantFormComponent', () => {
 
     component.formDataReady = true;
     component.formData$ = Observable.from([utils.FORM_DATA]);
+    component.form.patchValue({password: 'foo_password'});
 
     fixture.detectChanges();
     tick();
     
-    expect(component.form.valid).toBe(true);
+    expect(component.form.valid).toBe(true, 'form is valid');
     fixture.nativeElement.querySelector('form button.edit-row').click();
 
     fixture.detectChanges();
@@ -278,11 +282,12 @@ describe('TenantFormComponent', () => {
 
     component.formDataReady = true;
     component.formData$ = Observable.from([utils.FORM_DATA]);
+    component.form.patchValue({password: 'foo_password'});
 
     fixture.detectChanges();
     tick();
     
-    expect(component.form.valid).toBe(true);
+    expect(component.form.valid).toBe(true, 'form is valid');
     fixture.nativeElement.querySelector('form button.delete-row').click();
 
     fixture.detectChanges();
