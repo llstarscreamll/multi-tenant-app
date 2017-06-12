@@ -7,6 +7,11 @@ const routes: Routes = [
   ...ROUTES
 ];
 
+/**
+ * TenantRoutingModule Class.
+ *
+ * @author  [name] <[<email address>]>
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

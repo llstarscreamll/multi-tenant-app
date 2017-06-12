@@ -1,108 +1,113 @@
-<div class="table-responsive">
+<app-alerts [appMessage]="messages$ | async" (closed)="cleanMessages()"></app-alerts>
+
+<app-loader *ngIf="!(itemsPagination$ | async); else dataTable" loader="ball-grid-pulse">{{ langKey + 'loading_items_list' | translate }}</app-loader>
+
+<ng-template #dataTable>
+  <div class="table-responsive">
     <table class="table table-hover actions-btns-3">
       
       <thead>
         <tr>
           <th style="width: 1em;"><input type="checkbox" name="select_all_items"></th>
           <th *ngIf="showColumn('tenants.id')" class="tenants.id">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.id', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.id') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.id' | translate }}
+            <span role="button" (click)="onSort('tenants.id')">
+                {{ langKey + 'fields.'+'tenants.id' | translate }}
                 <i *ngIf="orderBy == 'tenants.id'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.name')" class="tenants.name">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.name', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.name') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.name' | translate }}
+            <span role="button" (click)="onSort('tenants.name')">
+                {{ langKey + 'fields.'+'tenants.name' | translate }}
                 <i *ngIf="orderBy == 'tenants.name'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.driver')" class="tenants.driver">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.driver', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.driver') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.driver' | translate }}
+            <span role="button" (click)="onSort('tenants.driver')">
+                {{ langKey + 'fields.'+'tenants.driver' | translate }}
                 <i *ngIf="orderBy == 'tenants.driver'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.host')" class="tenants.host">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.host', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.host') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.host' | translate }}
+            <span role="button" (click)="onSort('tenants.host')">
+                {{ langKey + 'fields.'+'tenants.host' | translate }}
                 <i *ngIf="orderBy == 'tenants.host'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.port')" class="tenants.port">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.port', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.port') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.port' | translate }}
+            <span role="button" (click)="onSort('tenants.port')">
+                {{ langKey + 'fields.'+'tenants.port' | translate }}
                 <i *ngIf="orderBy == 'tenants.port'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.database')" class="tenants.database">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.database', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.database') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.database' | translate }}
+            <span role="button" (click)="onSort('tenants.database')">
+                {{ langKey + 'fields.'+'tenants.database' | translate }}
                 <i *ngIf="orderBy == 'tenants.database'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.username')" class="tenants.username">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.username', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.username') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.username' | translate }}
+            <span role="button" (click)="onSort('tenants.username')">
+                {{ langKey + 'fields.'+'tenants.username' | translate }}
                 <i *ngIf="orderBy == 'tenants.username'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.password')" class="tenants.password">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.password', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.password') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.password' | translate }}
+            <span role="button" (click)="onSort('tenants.password')">
+                {{ langKey + 'fields.'+'tenants.password' | translate }}
                 <i *ngIf="orderBy == 'tenants.password'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.prefix')" class="tenants.prefix">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.prefix', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.prefix') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.prefix' | translate }}
+            <span role="button" (click)="onSort('tenants.prefix')">
+                {{ langKey + 'fields.'+'tenants.prefix' | translate }}
                 <i *ngIf="orderBy == 'tenants.prefix'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.meta')" class="tenants.meta">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.meta', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.meta') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.meta' | translate }}
+            <span role="button" (click)="onSort('tenants.meta')">
+                {{ langKey + 'fields.'+'tenants.meta' | translate }}
                 <i *ngIf="orderBy == 'tenants.meta'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.created_at')" class="tenants.created_at">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.created_at', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.created_at') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.created_at' | translate }}
+            <span role="button" (click)="onSort('tenants.created_at')">
+                {{ langKey + 'fields.'+'tenants.created_at' | translate }}
                 <i *ngIf="orderBy == 'tenants.created_at'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.updated_at')" class="tenants.updated_at">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.updated_at', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.updated_at') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.updated_at' | translate }}
+            <span role="button" (click)="onSort('tenants.updated_at')">
+                {{ langKey + 'fields.'+'tenants.updated_at' | translate }}
                 <i *ngIf="orderBy == 'tenants.updated_at'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
           <th *ngIf="showColumn('tenants.deleted_at')" class="tenants.deleted_at">
-            <span role="button" (click)="updateSearch.emit({'orderBy': 'tenants.deleted_at', 'sortedBy': (sortedBy == 'desc' || orderBy != 'tenants.deleted_at') ? 'asc' : 'desc'})">
-                {{ translateKey + 'fields.'+'tenants.deleted_at' | translate }}
+            <span role="button" (click)="onSort('tenants.deleted_at')">
+                {{ langKey + 'fields.'+'tenants.deleted_at' | translate }}
                 <i *ngIf="orderBy == 'tenants.deleted_at'"
                     [ngClass]="{'glyphicon': true, 'glyphicon-triangle-bottom': sortedBy == 'desc', 'glyphicon-triangle-top': sortedBy == 'asc'}"></i>
             </span>
           </th>
-          <th class="actions" translate>{{ translateKey + 'actions_table_header' }}</th>
+          <th class="actions" translate>{{ langKey + 'actions_table_header' }}</th>
         </tr>
       </thead>
 
       <tbody>
 
-        <ng-container *ngIf="tenants && tenants.length > 0">
-        <tr *ngFor="let tenant of tenants"  [ngClass]="{'danger': tenant.deleted_at }" >
+        <ng-container *ngIf="(itemsPagination$ | async)?.data.length > 0">
+        <tr *ngFor="let tenant of (itemsPagination$ | async)?.data"  [ngClass]="{'danger': tenant.deleted_at }" >
           <td><input type="checkbox" name="item[]" value="tenant.id"></td>
           <td *ngIf="showColumn('tenants.id')" class="id">
             {{ tenant?.id }}
@@ -145,39 +150,42 @@
           </td>
           <td class="actions">
             <a
+              userCan="tenants.details"
               [routerLink]="[ '/tenant', tenant.id, 'details']"
-              tooltip="{{ translateKey + 'details' | translate }}"
+              tooltip="{{ langKey + 'details' | translate }}"
               class="btn btn-sm btn-default details-link">
               <i class="glyphicon glyphicon-eye-open"></i>
-              <span class="sr-only btn-label" translate>{{ translateKey + 'details' }}</span>
+              <span class="sr-only btn-label" translate>{{ langKey + 'details' }}</span>
             </a>
 
             <a
               *ngIf="!tenant.deleted_at"
+              userCan="tenants.update"
               [routerLink]="[ '/tenant', tenant.id, 'edit']"
-              tooltip="{{ translateKey + 'edit' | translate }}"
+              tooltip="{{ langKey + 'edit' | translate }}"
               class="btn btn-sm btn-default edit-link">
               <i class="glyphicon glyphicon-pencil"></i>
-              <span class="sr-only btn-label" translate>{{ translateKey + 'edit' }}</span>
+              <span class="sr-only btn-label" translate>{{ langKey + 'edit' }}</span>
             </a>
             
             <a
               *ngIf="!tenant.deleted_at"
+              userCan="tenants.delete"
               class="btn btn-sm btn-default delete-link"
               role="button"
-              tooltip="{{ translateKey + 'delete' | translate }}"
-              (click)="deleteBtnClicked.emit(tenant.id)">
+              tooltip="{{ langKey + 'delete' | translate }}"
+              (click)="deleteRow(tenant.id)">
               <i class="glyphicon glyphicon-trash"></i>
-              <span class="sr-only btn-label" translate>{{ translateKey + 'delete' }}</span>
+              <span class="sr-only btn-label" translate>{{ langKey + 'delete' }}</span>
             </a>
           </td>
         </tr>
         </ng-container>
 
-        <ng-container *ngIf="!tenants || tenants.length == 0">
+        <ng-container *ngIf="(itemsPagination$ | async)?.data.length == 0">
         <tr>
           <td [attr.colspan]="columns.length + 2">
-            <div class="alert alert-warning" translate>{{ translateKey + 'msg.no_rows_found' }}</div>
+            <div class="alert alert-warning" translate>{{ langKey + 'msg.no_rows_found' }}</div>
           </td>
         </tr>
         </ng-container>
@@ -185,23 +193,24 @@
       </tbody>
 
     </table>
-</div>
-
-<!-- paginator -->
-<div class="row">
-  <div class="col-xs-12">
-    <pagination
-      class="pull-right"
-      [(ngModel)]="currentPage"
-      [totalItems]="pagination?.total"
-      [itemsPerPage]="pagination?.per_page"
-      [maxSize]="5"
-      [boundaryLinks]="true"
-      (pageChanged)="updateSearch.emit($event)"
-      [firstText]="translateKey + 'paginator.first_text' | translate"
-      [lastText]="translateKey + 'paginator.last_text' | translate"
-      [nextText]="translateKey + 'paginator.next_text' | translate"
-      [previousText]="translateKey + 'paginator.previous_text' | translate"
-      ></pagination>
   </div>
-</div>
+
+  <!-- paginator -->
+  <div class="row">
+    <div class="col-xs-12">
+      <pagination
+        class="pull-right"
+        [(ngModel)]="currentPage"
+        [totalItems]="pagination?.total"
+        [itemsPerPage]="pagination?.per_page"
+        [maxSize]="5"
+        [boundaryLinks]="true"
+        (pageChanged)="pageChanged($event)"
+        [firstText]="langKey + 'paginator.first_text' | translate"
+        [lastText]="langKey + 'paginator.last_text' | translate"
+        [nextText]="langKey + 'paginator.next_text' | translate"
+        [previousText]="langKey + 'paginator.previous_text' | translate"
+        ></pagination>
+    </div>
+  </div>
+</ng-template>

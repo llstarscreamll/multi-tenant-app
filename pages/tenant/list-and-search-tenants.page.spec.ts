@@ -9,16 +9,20 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Observable } from 'rxjs/Observable';
 
 import * as fromRoot from './../../../reducers';
-import { AuthGuard } from './../../../auth/guards/auth.guard';
 
 import * as utils from './../../utils/tenant-testing.util';
 import { Tenant } from './../../models/tenant';
 import { ES } from './../../translations/es';
 import { ListAndSearchTenantsPage } from './list-and-search-tenants.page';
 import { TenantComponents } from './../../components/tenant';
-import { TenantContainers } from './../../containers/tenant';
+import { TenantPages } from './../../pages/tenant';
 import { TenantService } from './../../services/tenant.service';
 
+/**
+ * ListAndSearchTenantsPage Tests.
+ *
+ * @author  [name] <[<email address>]>
+ */
 describe('ListAndSearchTenantsPage', () => {
   let mockBackend: MockBackend;
   let store: Store<fromRoot.State>;
@@ -26,7 +30,6 @@ describe('ListAndSearchTenantsPage', () => {
   let component: ListAndSearchTenantsPage;
   let router: Router;
   let location: Location;
-  let authGuard: AuthGuard;
   let service: TenantService;
   let http: Http;
   let testModel: Tenant = utils.TenantOne;
@@ -35,20 +38,19 @@ describe('ListAndSearchTenantsPage', () => {
     TestBed.configureTestingModule({
       declarations: [
         ...TenantComponents,
-        ...TenantContainers,
+        ...TenantPages,
       ],
       imports: [
-        ...utils.CONTAINERS_IMPORTS,
+        ...utils.IMPORTS,
       ],
       providers: [
-        ...utils.CONTAINERS_PROVIDERS,
+        ...utils.PROVIDERS,
       ]
     }).compileComponents();
 
     store = getTestBed().get(Store);
     router = getTestBed().get(Router);
     location = getTestBed().get(Location);
-    authGuard = getTestBed().get(AuthGuard);
     http = getTestBed().get(Http);
     service = getTestBed().get(TenantService);
 
@@ -57,8 +59,6 @@ describe('ListAndSearchTenantsPage', () => {
     
     fixture = getTestBed().createComponent(ListAndSearchTenantsPage);
     component = fixture.componentInstance;
-
-    spyOn(authGuard, 'canActivate').and.returnValue(true);
   }));
 
   beforeEach(inject([TranslateService], (translateService: TranslateService) => {
@@ -73,28 +73,28 @@ describe('ListAndSearchTenantsPage', () => {
   });
 
   it('should have certain html components', fakeAsync(() => {
-    spyOn(location, 'path').and.returnValue('/tenant');
-    spyOn(service, 'load').and.returnValue(Observable.from([{}]));
+    spyOn(service, 'paginate').and.returnValue(Observable.from([{data: [], pagination: {}}])); // empty data
 
     fixture.detectChanges();
     tick();
 
-    expect(fixture.nativeElement.querySelector('tenant-search-basic-component')).not.toBeNull('basic search component');
-    expect(fixture.nativeElement.querySelector('tenant-search-advanced-component')).toBeNull('advanced search component');
-    expect(fixture.nativeElement.querySelector('tenants-table-component')).not.toBeNull('table list component');
+    let html = fixture.nativeElement;
+
+    expect(html.querySelector('tenant-search-basic-component')).not.toBeNull('basic search component');
+    expect(html.querySelector('tenants-table-component')).not.toBeNull('table list component');
+    expect(html.querySelector('tenant-search-advanced-component')).toBeNull('advanced search component');
 
     // click btn to display advanced search form
-    fixture.nativeElement.querySelector('tenant-search-basic-component form button.advanced-search-btn').click();
+    html.querySelector('tenant-search-basic-component form button.advanced-search-btn').click();
 
     fixture.detectChanges();
     tick(500);
 
-    expect(fixture.nativeElement.querySelector('tenant-search-advanced-component')).not.toBeNull('advanced search component');
+    expect(html.querySelector('tenant-search-advanced-component')).not.toBeNull('advanced search component');
   }));
 
   it('should navigate on create btn click', fakeAsync(() => {
-    spyOn(location, 'path').and.returnValue('/tenant');
-    spyOn(service, 'load').and.returnValue(Observable.from([{}]));
+    spyOn(service, 'paginate').and.returnValue(Observable.from([{data: [], pagination: {}}])); // empty data
 
     fixture.detectChanges();
     tick();
@@ -111,13 +111,12 @@ describe('ListAndSearchTenantsPage', () => {
   }));
 
   it('should show advanced search form on btn click', fakeAsync(() => {
-    spyOn(location, 'path').and.returnValue('/tenant');
-    spyOn(service, 'load').and.returnValue(Observable.from([{}]));
+    spyOn(service, 'paginate').and.returnValue(Observable.from([{data: [], pagination: {}}])); // empty data
 
     fixture.detectChanges();
     tick();
 
-    expect(component.showSearchOptions).toBe(false);
+    expect(component.showAdvancedSearchForm).toBe(false);
     expect(fixture.nativeElement.querySelector('tenant-search-advanced-component')).toBeNull('advanced search component');
 
     fixture.nativeElement.querySelector('tenant-search-basic-component form button.advanced-search-btn').click();
@@ -125,21 +124,7 @@ describe('ListAndSearchTenantsPage', () => {
     fixture.detectChanges();
     tick(500);
 
-    expect(component.showSearchOptions).toBe(true);
+    expect(component.showAdvancedSearchForm).toBe(true);
     expect(fixture.nativeElement.querySelector('tenant-search-advanced-component')).not.toBeNull('advanced search component');
-  }));
-
-  it('should make certain TenantService calls on ngOnInit', fakeAsync(() => {
-    spyOn(location, 'path').and.returnValue('/tenant');
-    spyOn(service, 'load').and.returnValue(Observable.from([{}]));
-    spyOn(service, 'getTenantFormModel').and.returnValue(Observable.from([{}]));
-    spyOn(service, 'getTenantFormData').and.returnValue(Observable.from([{}]));
-
-    fixture.detectChanges();
-    tick();
-
-    expect(service.load).toHaveBeenCalled();
-    expect(service.getTenantFormModel).toHaveBeenCalled();
-    expect(service.getTenantFormData).toHaveBeenCalled();
   }));
 });

@@ -1,107 +1,117 @@
 import { Action } from '@ngrx/store';
-import { type } from './../../core/util';
 import { Tenant } from './../models/tenant';
 import { TenantPagination } from './../models/tenantPagination';
+import { AppMessage } from './../../core/models/appMessage';
 
-export const ActionTypes = {
-	LOAD_TENANTS: type('[Tenant] Load'),
-	LOAD_TENANTS_SUCCESS: type('[Tenant] Load Success'),
-	GET_TENANT_FORM_DATA: type('[Tenant] Get Form Data'),
-	GET_TENANT_FORM_DATA_SUCCESS: type('[Tenant] Get Form Data Success'),
-	GET_TENANT_FORM_MODEL: type('[Tenant] Get Form Model'),
-	GET_TENANT_FORM_MODEL_SUCCESS: type('[Tenant] Get Form Model Success'),
-	CREATE_TENANT: type('[Tenant] Create'),
-	CREATE_TENANT_BY_NAME: type('[Tenant] Create by Name'),
-	GET_TENANT: type('[Tenant] Get'),
-	UPDATE_TENANT: type('[Tenant] Update'),
-	DELETE_TENANT: type('[Tenant] Delete'),
-	RESTORE_TENANT: type('[Tenant] Restore'),
-	SET_SELECTED_TENANT: type('[Tenant] Set Selected'),
-	SET_TENANT_ERRORS: type('[Tenant] Set Errors'),
-}
-
-export class LoadAction implements Action {
-	type = ActionTypes.LOAD_TENANTS;
-	public constructor(public payload: Object = {}) { }
-}
-
-export class LoadSuccessAction implements Action {
-	type = ActionTypes.LOAD_TENANTS_SUCCESS;
-	public constructor(public payload: TenantPagination ) { }
-}
+/**
+ * Tenant Actions.
+ *
+ * @author  [name] <[<email address>]>
+ */
+export const GET_FORM_MODEL = '[Tenant] Get Form Model';
+export const GET_FORM_MODEL_SUCCESS = '[Tenant] Get Form Model Success';
+export const GET_FORM_DATA = '[Tenant] Get Form Data';
+export const SET_SEARCH_QUERY = '[Tenant] Set Search Query';
+export const PAGINATE = '[Tenant] Paginate';
+export const PAGINATE_SUCCESS = '[Tenant] Paginate Success';
+export const LIST = '[Tenant] List';
+export const LIST_SUCCESS = '[Tenant] List Success';
+export const CREATE = '[Tenant] Create';
+export const GET_BY_ID = '[Tenant] Get';
+export const UPDATE = '[Tenant] Update';
+export const DELETE = '[Tenant] Delete';
+export const RESTORE = '[Tenant] Restore';
+export const SET_SELECTED = '[Tenant] Set Selected';
+export const SET_MESSAGES = '[Tenant] Set Messages';
 
 export class GetFormModelAction implements Action {
-	type = ActionTypes.GET_TENANT_FORM_MODEL;
-	public constructor(public payload: null = null) { }
+  readonly type = GET_FORM_MODEL;
+  public constructor(public payload: null = null) { }
 }
 
 export class GetFormModelSuccessAction implements Action {
-	type = ActionTypes.GET_TENANT_FORM_MODEL_SUCCESS;
-	public constructor(public payload: Object) { }
+  readonly type = GET_FORM_MODEL_SUCCESS;
+  public constructor(public payload: Object) { }
 }
 
 export class GetFormDataAction implements Action {
-	type = ActionTypes.GET_TENANT_FORM_DATA;
-	public constructor(public payload: null = null) { }
+  readonly type = GET_FORM_DATA;
+  public constructor(public payload: boolean = false) { }
 }
 
-export class GetFormDataSuccessAction implements Action {
-	type = ActionTypes.GET_TENANT_FORM_DATA_SUCCESS;
-	public constructor(public payload: Object) { }
+export class SetSearchQueryAction implements Action {
+  readonly type = SET_SEARCH_QUERY;
+  public constructor(public payload: Object = {}) { }
 }
 
-export class GetAction implements Action {
-	type = ActionTypes.GET_TENANT;
-	public constructor(public payload: string) { }
+export class PaginateAction implements Action {
+  readonly type = PAGINATE;
+  public constructor(public payload: Object = {}) { }
+}
+
+export class PaginateSuccessAction implements Action {
+  readonly type = PAGINATE_SUCCESS;
+  public constructor(public payload: TenantPagination ) { }
+}
+
+export class ListAction implements Action {
+  readonly type = LIST;
+  public constructor(public payload: boolean = false) { }
+}
+
+export class ListSuccessAction implements Action {
+  readonly type = LIST_SUCCESS;
+  public constructor(public payload: Array<any> ) { }
+}
+
+export class GetByIdAction implements Action {
+  readonly type = GET_BY_ID;
+  public constructor(public payload: string) { }
 }
 
 export class CreateAction implements Action {
-	type = ActionTypes.CREATE_TENANT;
-	public constructor(public payload: Object) { }
-}
-
-
-export class CreateByNameAction implements Action {
-	type = ActionTypes.CREATE_TENANT_BY_NAME;
-	public constructor(public payload: Object) { }
+  readonly type = CREATE;
+  public constructor(public payload: { item: Tenant, redirect: boolean }) { }
 }
 
 export class UpdateAction implements Action {
-	type = ActionTypes.UPDATE_TENANT;
-	public constructor(public payload: Tenant) { }
+  readonly type = UPDATE;
+  public constructor(public payload: { id: string | number, item: Tenant, redirect: boolean }) { }
 }
 
 export class DeleteAction implements Action {
-	type = ActionTypes.DELETE_TENANT;
-	public constructor(public payload: { id: string, reloadListQuery: Object }) { }
+  readonly type = DELETE;
+  public constructor(public payload: { id: string, reloadListQuery: Object | null }) { }
 }
 
 export class RestoreAction implements Action {
-	type = ActionTypes.RESTORE_TENANT;
-	public constructor(public payload: string) { }
+  readonly type = RESTORE;
+  public constructor(public payload: { id: string, reloadListQuery: Object | null }) { }
 }
 
 export class SetSelectedAction implements Action {
-	type = ActionTypes.SET_SELECTED_TENANT;
-	public constructor(public payload: Tenant | Object = null) { }
+  readonly type = SET_SELECTED;
+  public constructor(public payload: Tenant = null) { }
 }
 
-export class SetErrorsAction implements Action {
-	type = ActionTypes.SET_TENANT_ERRORS;
-	public constructor(public payload: Tenant | Object = {}) { }
+export class SetMessagesAction implements Action {
+  readonly type = SET_MESSAGES;
+  public constructor(public payload: AppMessage = null) { }
 }
 
 export type Actions
-	= LoadAction
-	| LoadSuccessAction
-	| GetFormModelAction
-	| GetFormModelSuccessAction
-	| GetFormDataAction
-	| GetFormDataSuccessAction
-	| CreateAction
-	| GetAction
-	| UpdateAction
-	| DeleteAction
-	| RestoreAction
-	| SetSelectedAction
-	| SetErrorsAction;
+  = GetFormModelAction
+  | GetFormModelSuccessAction
+  | GetFormDataAction
+  | SetSearchQueryAction
+  | ListAction
+  | ListSuccessAction
+  | PaginateAction
+  | PaginateSuccessAction
+  | CreateAction
+  | GetByIdAction
+  | UpdateAction
+  | DeleteAction
+  | RestoreAction
+  | SetSelectedAction
+  | SetMessagesAction;

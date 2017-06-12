@@ -1,0 +1,22 @@
+<app-sidebar-layout>
+  <app-page-header>
+    <div class="col-xs-12">
+      <h1>
+        {{ 'TENANT.module-name-plural' | translate }}
+        <small> / {{ 'TENANT.'+formType | translate }}</small>
+      </h1>
+    </div>
+  </app-page-header>
+
+  <app-page-content>
+    <app-box>
+      <app-box-body>
+
+        <tenant-form-component [formType]="formType">
+        </tenant-form-component>
+
+      </app-box-body>
+    </app-box>
+  </app-page-content>
+
+</app-sidebar-layout>

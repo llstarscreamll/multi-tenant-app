@@ -2,80 +2,127 @@ import * as tenant from '../actions/tenant.actions';
 import { Tenant } from './../models/tenant';
 import { TenantPagination } from './../models/tenantPagination';
 
+import { AppMessage } from './../../core/models/appMessage';
+import { SearchQuery } from './../components/tenant/tenant-abstract.component';
+
+/**
+ * Tenant Reducer.
+ *
+ * @author  [name] <[<email address>]>
+ */
 export interface State {
-  tenantFormModel: Object;
-  tenantFormData: Object;
-  tenantsPagination: TenantPagination | null;
-  selectedTenant: Tenant | null;
+  formModel: Object;
+  list: Array<any>;
+  pagination: TenantPagination | null;
+  selected: Tenant | null;
+  searchQuery: SearchQuery;
   loading: boolean;
-  errors: Object;
+  messages: AppMessage;
 }
 
 const initialState: State = {
-  tenantFormModel: null,
-  tenantFormData: null,
-  tenantsPagination: null,
-  selectedTenant: null,
+  formModel: null,
+  pagination: null,
+  list: null,
+  selected: null,
+  searchQuery: {
+    // columns to retrive from API
+    filter: [
+      // 'tenants.id',
+      'tenants.name',
+      // 'tenants.driver',
+      // 'tenants.host',
+      // 'tenants.port',
+      // 'tenants.database',
+      // 'tenants.username',
+      // 'tenants.password',
+      // 'tenants.prefix',
+      // 'tenants.meta',
+      // 'tenants.created_at',
+      // 'tenants.updated_at',
+      // 'tenants.deleted_at',
+    ],
+    // the relations map, we need some fields for eager load certain relations
+    include: {
+    },
+    orderBy: "tenants.created_at",
+    sortedBy: "desc",
+    page: 1
+  },
   loading: true,
-  errors: {}
+  messages: null
 };
 
 export function reducer(state = initialState, action: tenant.Actions): State {
   switch (action.type) {
-    case tenant.ActionTypes.LOAD_TENANTS: {
+    case tenant.GET_FORM_MODEL: {
       return { ...state, loading: true };
     }
 
-    case tenant.ActionTypes.LOAD_TENANTS_SUCCESS: {
-      return { ...state, tenantsPagination: action.payload as TenantPagination, loading: false };
+    case tenant.GET_FORM_MODEL_SUCCESS: {
+      return { ...state, formModel: action.payload, loading: false };
     }
-    
-    case tenant.ActionTypes.GET_TENANT_FORM_MODEL: {
+
+    case tenant.SET_SEARCH_QUERY: {
+      let searchQuery = Object.assign({}, state.searchQuery, action.payload);
+      return { ...state, searchQuery: searchQuery };
+    }
+
+    case tenant.PAGINATE: {
       return { ...state, loading: true };
     }
 
-    case tenant.ActionTypes.GET_TENANT_FORM_MODEL_SUCCESS: {
-      return { ...state, tenantFormModel: action.payload, loading: false };
+    case tenant.PAGINATE_SUCCESS: {
+      return { ...state, pagination: action.payload as TenantPagination, loading: false };
     }
-    
-    case tenant.ActionTypes.GET_TENANT_FORM_DATA: {
+
+    case tenant.LIST: {
+      return { ...state };
+    }
+
+    case tenant.LIST_SUCCESS: {
+      return { ...state, list: action.payload };
+    }
+
+    case tenant.CREATE: {
       return { ...state, loading: true };
     }
 
-    case tenant.ActionTypes.GET_TENANT_FORM_DATA_SUCCESS: {
-      return { ...state, tenantFormData: action.payload, loading: false };
-    }
-
-    case tenant.ActionTypes.CREATE_TENANT: {
+    case tenant.GET_BY_ID: {
       return { ...state, loading: true };
     }
 
-    case tenant.ActionTypes.CREATE_TENANT_BY_NAME: {
+    case tenant.UPDATE: {
       return { ...state, loading: true };
     }
 
-    case tenant.ActionTypes.GET_TENANT: {
+    case tenant.DELETE: {
       return { ...state, loading: true };
     }
 
-    case tenant.ActionTypes.UPDATE_TENANT: {
+    case tenant.RESTORE: {
       return { ...state, loading: true };
     }
 
-    case tenant.ActionTypes.DELETE_TENANT: {
-      return { ...state, loading: true };
+    case tenant.SET_SELECTED: {
+      return { ...state, selected: action.payload as Tenant, loading: false };
     }
 
-    case tenant.ActionTypes.RESTORE_TENANT: {
-      return { ...state, loading: true };
-    }
+    case tenant.SET_MESSAGES: {
+      let msg = action.payload;
 
-    case tenant.ActionTypes.SET_SELECTED_TENANT: {
-      return { ...state, selectedTenant: action.payload as Tenant, loading: false };
-    }
+      // if messages already exists and you want to clean that messages,
+      // exists messages must have been shown at least for 2 seconds
+      // before they can be removed
+      if(state.messages && state.messages.date && !msg) {
+        let endTime = new Date().getTime();
+        let startTime = state.messages.date.getTime();
 
-    case tenant.ActionTypes.SET_TENANT_ERRORS: {
-      return { ...state, errors: action.payload };
+        // at least 2 seconds must have happened to set the messages no null
+        msg = ((endTime - startTime) / 1000 > 2) ? msg : state.messages ;
+      }
+
+      return { ...state, messages: msg };
     }
 
     default: {
@@ -84,12 +131,13 @@ export function reducer(state = initialState, action: tenant.Actions): State {
   }
  }
 
-export const getTenantFormModel = (state: State) => state.tenantFormModel;
-export const getTenantFormData = (state: State) => state.tenantFormData;
-export const getTenantsPagination = (state: State) => state.tenantsPagination;
-export const getSelectedTenant = (state: State) => state.selectedTenant;
+export const getFormModel = (state: State) => state.formModel;
 export const getLoading = (state: State) => state.loading;
-export const getErrors = (state: State) => state.errors;
+export const getItemsList = (state: State) => state.list;
+export const getItemsPagination = (state: State) => state.pagination;
+export const getSelectedItem = (state: State) => state.selected;
+export const getSearchQuery = (state: State) => state.searchQuery;
+export const getMessages = (state: State) => state.messages;
 
 /* -----------------------------------------------------------------------------
 Don't forget to import these reducer on the main app reducer!!
@@ -104,14 +152,15 @@ const reducers = {
   tenant: fromTenant.reducer,
 };
 
-  
 // Tenant selectors
 export const getTenantState = (state: State) => state.tenant;
-export const getTenantFormModel = createSelector(getTenantState, fromTenant.getTenantFormModel);
-export const getTenantFormData = createSelector(getTenantState, fromTenant.getTenantFormData);
-export const getTenantsPagination = createSelector(getTenantState, fromTenant.getTenantsPagination);
-export const getSelectedTenant = createSelector(getTenantState, fromTenant.getSelectedTenant);
+export const getTenantSearchQuery = createSelector(getTenantState, fromTenant.getSearchQuery);
+export const getTenantFormModel = createSelector(getTenantState, fromTenant.getFormModel);
+// export const getTenantFormData = createSelector(() => ({  }));
+export const getTenantList = createSelector(getTenantState, fromTenant.getItemsList);
+export const getTenantPagination = createSelector(getTenantState, fromTenant.getItemsPagination);
+export const getTenantSelected = createSelector(getTenantState, fromTenant.getSelectedItem);
 export const getTenantLoading = createSelector(getTenantState, fromTenant.getLoading);
-export const getTenantErrors = createSelector(getTenantState, fromTenant.getErrors);
+export const getTenantMessages = createSelector(getTenantState, fromTenant.getMessages);
 
 ----------------------------------------------------------------------------- */

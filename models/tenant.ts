@@ -1,12 +1,10 @@
-import { Timestamps } from './../../core/models/date';
-
-interface Module {
-	id: string | number;
-	name: string;
-}
-
+/**
+ * Tenant Class.
+ *
+ * @author  [name] <[<email address>]>
+ */
 export class Tenant {
-	id: string;
+	id: string | number;
 	name: string;
 	driver: string;
 	host: string;
@@ -15,8 +13,7 @@ export class Tenant {
 	username: string;
 	password?: string;
 	prefix: string;
-	meta: string[];
-	modules?: {data: Array<Module>};
+	meta: string[] | string;
 	created_at: string;
 	updated_at: string;
 	deleted_at: string;
