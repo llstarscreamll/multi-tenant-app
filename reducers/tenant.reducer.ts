@@ -140,7 +140,7 @@ export const getSearchQuery = (state: State) => state.searchQuery;
 export const getMessages = (state: State) => state.messages;
 
 /* -----------------------------------------------------------------------------
-Don't forget to import these reducer on the main app reducer!!
+Don't forget to import this reducer and selectors on the main app reducer!!
 
 import * as fromTenant from './tenant/reducers/tenant.reducer';
 
