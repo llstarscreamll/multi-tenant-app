@@ -7,6 +7,8 @@ This angular module is a client for the [Tenant](https://github.com/llstarscream
 From the root *Hello-Angular* folder:
 
 ```bash
+npm i --save @ngx-translate/core
+npm i --save ngx-bootstrap
 git clone https://github.com/llstarscreamll/tenant-ng src/app/tenant
 ```
 
