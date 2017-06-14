@@ -20,7 +20,7 @@ export class TenantFormPage extends TenantAbstractPage implements OnInit, OnDest
    * Page title language key.
    * @type  string
    */
-  protected title: string = 'form-page';
+  protected title = 'form-page';
 
   /**
    * TenantFormPage constructor.

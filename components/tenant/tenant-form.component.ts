@@ -36,7 +36,7 @@ export class TenantFormComponent extends TenantAbstractComponent implements OnIn
    * @type  string
    */
   @Input()
-  public formType: string = 'create';
+  public formType = 'create';
 
   @Input()
   public selectedItemId: string;
@@ -45,7 +45,7 @@ export class TenantFormComponent extends TenantAbstractComponent implements OnIn
    * Call redirect action from ngrx/router-store in create/update effects?
    */
   @Input()
-  public redirect: boolean = true;
+  public redirect = true;
 
   /**
    * TenantFormComponent constructor.
@@ -78,7 +78,7 @@ export class TenantFormComponent extends TenantAbstractComponent implements OnIn
     if (this.form && this.formReady && this.formModelReady && this.formDataReady && this.selectedItemReady) {
       return true;
     }
-    
+
     return false;
   }
 
@@ -119,7 +119,7 @@ export class TenantFormComponent extends TenantAbstractComponent implements OnIn
    * Hadle the form submition based on the actual form type.
    */
   public submitForm() {
-    let payload = { item: this.form.value, redirect: this.redirect };
+    const payload = { item: this.form.value, redirect: this.redirect };
 
     if (this.formType == 'create') {
       this.store.dispatch(new tenantActions.CreateAction(payload));

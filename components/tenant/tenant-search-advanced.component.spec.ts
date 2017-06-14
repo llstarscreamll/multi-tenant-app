@@ -26,7 +26,7 @@ import * as utils from './../../utils/tenant-testing.util';
 describe('TenantSearchAdvancedComponent', () => {
   let fixture: ComponentFixture<TenantSearchAdvancedComponent>;
   let component: TenantSearchAdvancedComponent;
-  let testModel: Tenant = utils.TenantOne;
+  const testModel: Tenant = utils.TenantOne;
   let reactiveForm;
   let mockBackend: MockBackend;
   let store: Store<fromRoot.State>;
@@ -78,7 +78,7 @@ describe('TenantSearchAdvancedComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let html = fixture.nativeElement;
+    const html = fixture.nativeElement;
 
     // should have app-alerts element
     expect(html.querySelector('app-alerts')).not.toBeNull();

@@ -20,14 +20,14 @@ export class ListAndSearchTenantsPage extends TenantAbstractPage implements OnIn
    * Page title.
    * @type  string
    */
-  protected title: string = 'module-name-plural';
+  protected title = 'module-name-plural';
 
   /**
    * Flag that tell as if the advanced search form should be shown or not.
    * @type  boolean
    */
-  public showAdvancedSearchForm: boolean = false;
-  
+  public showAdvancedSearchForm = false;
+
   /**
    * ListAndSearchTenantsPage constructor.
    */

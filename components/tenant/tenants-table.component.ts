@@ -59,8 +59,8 @@ export class TenantsTableComponent extends TenantAbstractComponent implements On
    * Update the search query with the new sortBy and sortedBy data.
    */
   public onSort(column: string) {
-    let orderBy = column;
-    let sortedBy = this.sortedBy == 'desc' || this.orderBy != column
+    const orderBy = column;
+    const sortedBy = this.sortedBy == 'desc' || this.orderBy != column
       ? 'asc'
       : 'desc';
 
@@ -70,7 +70,7 @@ export class TenantsTableComponent extends TenantAbstractComponent implements On
   /**
    * Update the search query with the new page data.
    */
-  public pageChanged(data: {page: number,itemsPerPage: number}) {
+  public pageChanged(data: {page: number, itemsPerPage: number}) {
     this.store.dispatch(new tenantActions.SetSearchQueryAction({page: data.page}));
   }
 

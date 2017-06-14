@@ -27,7 +27,7 @@ describe('TenantFormComponent', () => {
   let fixture: ComponentFixture<TenantFormComponent>;
   let component: TenantFormComponent
   let formModel;
-  let testModel: Tenant = utils.TenantOne;
+  const testModel: Tenant = utils.TenantOne;
   let reactiveForm;
   let mockBackend: MockBackend;
   let store: Store<fromRoot.State>;
@@ -53,7 +53,7 @@ describe('TenantFormComponent', () => {
 
     mockBackend = getTestBed().get(MockBackend);
     utils.setupMockBackend(mockBackend);
-    
+
     fixture = getTestBed().createComponent(TenantFormComponent);
     component = fixture.componentInstance;
   }));
@@ -94,7 +94,7 @@ describe('TenantFormComponent', () => {
     expect(fixture.nativeElement.querySelector('[name=password]')).not.toBeNull('password field');
     expect(fixture.nativeElement.querySelector('[name=prefix]')).not.toBeNull('prefix field');
     expect(fixture.nativeElement.querySelector('[name=meta]')).not.toBeNull('meta field');
-  
+
     // form links/buttons
     expect(fixture.nativeElement.querySelector('form button.btn.create-row')).not.toBeNull('create form btn should exists');
     expect(fixture.nativeElement.querySelector('form a.btn.show-all-rows')).not.toBeNull('show all form link should exists');
@@ -128,7 +128,7 @@ describe('TenantFormComponent', () => {
     expect(fixture.nativeElement.querySelector('[name=created_at]:disabled')).not.toBeNull('created_at field');
     expect(fixture.nativeElement.querySelector('[name=updated_at]:disabled')).not.toBeNull('updated_at field');
     expect(fixture.nativeElement.querySelector('[name=deleted_at]:disabled')).not.toBeNull('deleted_at field');
-  
+
     // form links/buttons
     expect(fixture.nativeElement.querySelector('form button.btn.edit-row')).not.toBeNull('edit form btn should exists');
     expect(fixture.nativeElement.querySelector('form button.btn.delete-row')).not.toBeNull('delete form btn should exists');
@@ -146,7 +146,7 @@ describe('TenantFormComponent', () => {
 
     fixture.detectChanges();
     tick();
-    
+
     expect(component.formType).toBe('edit');
     expect(fixture.nativeElement.querySelector('form')).not.toBeNull('edit form should exists');
 
@@ -168,7 +168,7 @@ describe('TenantFormComponent', () => {
     expect(fixture.nativeElement.querySelector('[name=prefix]').value).toBe(testModel.prefix ? testModel.prefix : '', 'prefix field value');
     expect(fixture.nativeElement.querySelector('[name=meta]')).not.toBeNull('meta field should exists');
     expect(fixture.nativeElement.querySelector('[name=meta]').value).toBe(testModel.meta ? testModel.meta : '', 'meta field value');
-    
+
     // form links/buttons
     expect(fixture.nativeElement.querySelector('form button.btn.edit-row')).not.toBeNull('edit form btn should exists');
     expect(fixture.nativeElement.querySelector('form button.btn.delete-row')).not.toBeNull('delete form btn should exists');
@@ -225,10 +225,10 @@ describe('TenantFormComponent', () => {
 
     fixture.detectChanges();
     tick();
-    
+
     expect(component.form.valid).toBe(false, 'form init as invalid');
     expect(fixture.nativeElement.querySelector('form button.create-row').disabled).toBe(true, 'create form btn disabled');
-    
+
     component.form.patchValue({...testModel, password: 'foo_password'});
     component.form.markAsDirty();
     component.form.markAsTouched();
@@ -260,7 +260,7 @@ describe('TenantFormComponent', () => {
 
     fixture.detectChanges();
     tick();
-    
+
     expect(component.form.valid).toBe(true, 'form is valid');
     fixture.nativeElement.querySelector('form button.edit-row').click();
 
@@ -286,7 +286,7 @@ describe('TenantFormComponent', () => {
 
     fixture.detectChanges();
     tick();
-    
+
     expect(component.form.valid).toBe(true, 'form is valid');
     fixture.nativeElement.querySelector('form button.delete-row').click();
 

@@ -24,7 +24,7 @@ import { TenantAbstractComponent, SearchQuery } from './tenant-abstract.componen
 export class TenantSearchBasicComponent extends TenantAbstractComponent implements OnInit {
   @Output()
   public advancedSearchBtnClick = new EventEmitter<null>();
-  
+
   public searchForm: FormGroup;
 
   public constructor(

@@ -21,13 +21,13 @@ export class TenantService extends AbstractService {
    * API endpoint.
    * @type  string
    */
-  protected API_ENDPOINT: string = 'v1/tenants';
+  protected API_ENDPOINT = 'v1/tenants';
 
   /**
    * The key to access language strings.
    * @type  string
    */
-  public langKey: string = 'TENANT';
+  public langKey = 'TENANT';
 
   /**
    * Langage key to access form fields translations.
@@ -94,12 +94,12 @@ export class TenantService extends AbstractService {
    */
   public paginate(query: Object = {}): Observable<TenantPagination> {
     this.setAuthorizationHeader();
-    let searchParams = this.parseGetParams(query);
+    const searchParams = this.parseGetParams(query);
 
     return this.http
       .get(this.apiEndpoint(), { headers: this.headers, search: searchParams })
       .map(res => {
-        let response = res.json();
+        const response = res.json();
 
         return {
           data: response.data.map(item => Object.assign(new Tenant, item)),
@@ -126,7 +126,7 @@ export class TenantService extends AbstractService {
   public getById(id: string | number): Observable<Tenant> {
     this.setAuthorizationHeader();
 
-    let urlParams: URLSearchParams = new URLSearchParams;
+    const urlParams: URLSearchParams = new URLSearchParams;
     urlParams.set('include', '');
     return this.http
       .get(this.apiEndpoint(id), { headers: this.headers, search: urlParams })
@@ -168,7 +168,7 @@ export class TenantService extends AbstractService {
       .get(this.langKey + '.msg.' + msgKey)
       .subscribe(trans => msg = trans);
 
-    let appMessage: AppMessage = {
+    const appMessage: AppMessage = {
       message: msg,
       date: new Date(),
       errors: {},

@@ -27,7 +27,7 @@ import * as utils from './../../utils/tenant-testing.util';
 describe('TenantsTableComponent', () => {
   let fixture: ComponentFixture<TenantsTableComponent>;
   let component: TenantsTableComponent;
-  let testModel: Tenant = utils.TenantOne;
+  const testModel: Tenant = utils.TenantOne;
   let reactiveForm;
   let mockBackend: MockBackend;
   let store: Store<fromRoot.State>;
@@ -86,7 +86,7 @@ describe('TenantsTableComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let msgElem = fixture.nativeElement.querySelector('div.alert');
+    const msgElem = fixture.nativeElement.querySelector('div.alert');
 
     expect(msgElem).not.toBeNull();
     expect(msgElem.textContent).toContain('No se encontraron registros...');
@@ -98,7 +98,7 @@ describe('TenantsTableComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let table = fixture.nativeElement.querySelector('table.table-hover');
+    const table = fixture.nativeElement.querySelector('table.table-hover');
 
     // the table should exists
     expect(table).not.toBeNull();
@@ -117,7 +117,7 @@ describe('TenantsTableComponent', () => {
     expect(table.querySelector('thead tr th.created_at'));
     expect(table.querySelector('thead tr th.updated_at'));
     expect(table.querySelector('thead tr th.deleted_at'));
-    
+
     // should have a "actions" column
     expect(table.querySelector('thead tr th.action'));
   }));
@@ -128,7 +128,7 @@ describe('TenantsTableComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let table = fixture.nativeElement.querySelector('table.table-hover');
+    const table = fixture.nativeElement.querySelector('table.table-hover');
 
     expect(table.querySelector('tbody').children.length).toEqual(2); // two rows
     expect(table.querySelector('tbody tr > td a.details-link')).not.toBeNull(); // first row details link
@@ -143,8 +143,8 @@ describe('TenantsTableComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let table = fixture.nativeElement.querySelector('table.table-hover');
-    let field = 'name';
+    const table = fixture.nativeElement.querySelector('table.table-hover');
+    const field = 'name';
     spyOn(store, 'dispatch');
 
     // table heading links
@@ -152,7 +152,7 @@ describe('TenantsTableComponent', () => {
 
     fixture.detectChanges();
     tick();
-    
+
     expect(store.dispatch).toHaveBeenCalledWith(new tenantActions.SetSearchQueryAction({
       'orderBy': 'tenants.' + field,
       'sortedBy': 'asc'
@@ -161,7 +161,7 @@ describe('TenantsTableComponent', () => {
     // details link click
     table.querySelector('tbody tr:first-child td a.details-link').click();
     fixture.detectChanges();
-    
+
     expect(router.navigateByUrl).toHaveBeenCalledWith(
       jasmine.stringMatching('/tenant/' + utils.TenantList[0].id + '/details'),
       { skipLocationChange: false, replaceUrl: false }
@@ -170,7 +170,7 @@ describe('TenantsTableComponent', () => {
     // edit link click
     table.querySelector('tbody tr:first-child td a.edit-link').click();
     fixture.detectChanges();
-    
+
     expect(router.navigateByUrl).toHaveBeenCalledWith(
       jasmine.stringMatching('/tenant/' + utils.TenantList[0].id  + '/edit'),
       { skipLocationChange: false, replaceUrl: false }
@@ -180,7 +180,7 @@ describe('TenantsTableComponent', () => {
     spyOn(component, 'deleteRow');
     table.querySelector('tbody tr:first-child td a.delete-link').click();
     fixture.detectChanges();
-    
+
     // the component.deleteRow method has full test on TenantFormComponent
     expect(component.deleteRow).toHaveBeenCalledWith(utils.TenantList[0].id);
   }));

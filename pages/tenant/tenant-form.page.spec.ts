@@ -30,7 +30,7 @@ describe('TenantFormPage', () => {
   let router: Router;
   let location: Location;
   let service: TenantService;
-  let testModel: Tenant = utils.TenantOne;
+  const testModel: Tenant = utils.TenantOne;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -53,7 +53,7 @@ describe('TenantFormPage', () => {
 
     mockBackend = getTestBed().get(MockBackend);
     utils.setupMockBackend(mockBackend);
-    
+
     fixture = getTestBed().createComponent(TenantFormPage);
     component = fixture.componentInstance;
   }));
@@ -71,7 +71,7 @@ describe('TenantFormPage', () => {
 
   it('should have certain elements', () => {
     fixture.detectChanges();
-    let html = fixture.nativeElement;
+    const html = fixture.nativeElement;
 
     // should have sidebar-layout
     expect(html.querySelector('app-sidebar-layout')).not.toBeNull();

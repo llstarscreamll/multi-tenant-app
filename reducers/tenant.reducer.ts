@@ -45,8 +45,8 @@ const initialState: State = {
     // the relations map, we need some fields for eager load certain relations
     include: {
     },
-    orderBy: "tenants.created_at",
-    sortedBy: "desc",
+    orderBy: 'tenants.created_at',
+    sortedBy: 'desc',
     page: 1
   },
   loading: true,
@@ -64,7 +64,7 @@ export function reducer(state = initialState, action: tenant.Actions): State {
     }
 
     case tenant.SET_SEARCH_QUERY: {
-      let searchQuery = Object.assign({}, state.searchQuery, action.payload);
+      const searchQuery = Object.assign({}, state.searchQuery, action.payload);
       return { ...state, searchQuery: searchQuery };
     }
 
@@ -114,9 +114,9 @@ export function reducer(state = initialState, action: tenant.Actions): State {
       // if messages already exists and you want to clean that messages,
       // exists messages must have been shown at least for 2 seconds
       // before they can be removed
-      if(state.messages && state.messages.date && !msg) {
-        let endTime = new Date().getTime();
-        let startTime = state.messages.date.getTime();
+      if (state.messages && state.messages.date && !msg) {
+        const endTime = new Date().getTime();
+        const startTime = state.messages.date.getTime();
 
         // at least 2 seconds must have happened to set the messages no null
         msg = ((endTime - startTime) / 1000 > 2) ? msg : state.messages ;

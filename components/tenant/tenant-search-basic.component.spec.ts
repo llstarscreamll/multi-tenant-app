@@ -26,7 +26,7 @@ import * as utils from './../../utils/tenant-testing.util';
 describe('TenantSearchBasicComponent', () => {
   let fixture: ComponentFixture<TenantSearchBasicComponent>;
   let component: TenantSearchBasicComponent;
-  let testModel: Tenant = utils.TenantOne;
+  const testModel: Tenant = utils.TenantOne;
   let reactiveForm;
   let mockBackend: MockBackend;
   let store: Store<fromRoot.State>;
@@ -72,25 +72,25 @@ describe('TenantSearchBasicComponent', () => {
     spyOn(service, 'paginate').and.returnValue(Observable.from([{}]));
     fixture.detectChanges();
 
-    let searchField = fixture.nativeElement.querySelector('input[name=search]');
-    let searchBtn = fixture.nativeElement.querySelector('button[type=submit]');
+    const searchField = fixture.nativeElement.querySelector('input[name=search]');
+    const searchBtn = fixture.nativeElement.querySelector('button[type=submit]');
 
     expect(searchBtn).not.toBeNull();
     expect(searchField).not.toBeNull();
-    
+
     searchField.value = 'foo search';
     searchBtn.click();
-    
+
     fixture.detectChanges();
     tick();
 
     expect(service.paginate).toHaveBeenCalled();
   }));
 
-  it('should emit event on advanced search btn click', () => {    
+  it('should emit event on advanced search btn click', () => {
     spyOn(component.advancedSearchBtnClick, 'emit');
     fixture.detectChanges();
-    let advancedSearchBtn = fixture.nativeElement.querySelector('button[type=button].advanced-search-btn');
+    const advancedSearchBtn = fixture.nativeElement.querySelector('button[type=button].advanced-search-btn');
 
     expect(advancedSearchBtn).not.toBeNull();
 

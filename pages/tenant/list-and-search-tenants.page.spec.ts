@@ -32,7 +32,7 @@ describe('ListAndSearchTenantsPage', () => {
   let location: Location;
   let service: TenantService;
   let http: Http;
-  let testModel: Tenant = utils.TenantOne;
+  const testModel: Tenant = utils.TenantOne;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,7 +56,7 @@ describe('ListAndSearchTenantsPage', () => {
 
     mockBackend = getTestBed().get(MockBackend);
     utils.setupMockBackend(mockBackend);
-    
+
     fixture = getTestBed().createComponent(ListAndSearchTenantsPage);
     component = fixture.componentInstance;
   }));
@@ -78,7 +78,7 @@ describe('ListAndSearchTenantsPage', () => {
     fixture.detectChanges();
     tick();
 
-    let html = fixture.nativeElement;
+    const html = fixture.nativeElement;
 
     expect(html.querySelector('tenant-search-basic-component')).not.toBeNull('basic search component');
     expect(html.querySelector('tenants-table-component')).not.toBeNull('table list component');
