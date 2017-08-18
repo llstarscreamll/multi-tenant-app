@@ -86,7 +86,7 @@ export class TenantEffects extends Effects {
     .switchMap(([action, state]) => {
       // data already exists and force == false?
       if (state.list && !action.payload) {
-        return empty();
+        return [];
       }
 
       return this.tenantService.list()
@@ -149,7 +149,7 @@ export class TenantEffects extends Effects {
         return of(new tenant.SetMessagesAction(msg));
       }
 
-      return empty();
+      return [];
     });
 
   @Effect()

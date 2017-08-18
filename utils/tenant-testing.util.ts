@@ -10,7 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Observable } from 'rxjs/Observable';
 
-import { environment } from './../../../environments/environment';
+import { THEME } from './../../themes';
 import { CoreModule } from './../../core/core.module';
 import { DynamicFormModule } from './../../dynamic-form/dynamic-form.module';
 import * as fromRoot from './../../reducers';
@@ -186,7 +186,7 @@ export const IMPORTS = [
 	...EFFECTS,
 	TranslateModule.forRoot(),
 	CoreModule,
-	environment.theme,
+	THEME.default,
 	ReactiveFormsModule,
 	Ng2BootstrapModule.forRoot(),
 	DynamicFormModule,
