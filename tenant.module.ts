@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 import { CoreSharedModule } from './../core/core.shared.module';
 import { THEME } from './../themes';
@@ -10,7 +11,6 @@ import { EFFECTS } from './effects';
 import { SERVICES } from './services';
 import { ES } from './translations/es';
 import { TenantRoutingModule } from './tenant-routing.module';
-import { FormsModule } from '@angular/forms';
 
 /**
  * TenantModule Class.

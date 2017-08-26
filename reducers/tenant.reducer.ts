@@ -11,7 +11,7 @@ import { SearchQuery } from './../components/tenant/tenant-abstract.component';
  * @author  [name] <[<email address>]>
  */
 export interface State {
-  formModel: Object;
+  formModel: any[];
   list: Array<any>;
   pagination: TenantPagination | null;
   selected: Tenant | null;
@@ -30,14 +30,14 @@ const initialState: State = {
     filter: [
       // 'tenants.id',
       'tenants.name',
-      // 'tenants.driver',
-      // 'tenants.host',
-      // 'tenants.port',
-      // 'tenants.database',
-      // 'tenants.username',
-      // 'tenants.password',
-      // 'tenants.prefix',
-      // 'tenants.meta',
+      'tenants.driver',
+      'tenants.host',
+      'tenants.port',
+      'tenants.database',
+      'tenants.username',
+      'tenants.password',
+      'tenants.prefix',
+      'tenants.meta',
       // 'tenants.created_at',
       // 'tenants.updated_at',
       // 'tenants.deleted_at',
@@ -140,7 +140,7 @@ export const getSearchQuery = (state: State) => state.searchQuery;
 export const getMessages = (state: State) => state.messages;
 
 /* -----------------------------------------------------------------------------
-Don't forget to import this reducer and selectors on the main app reducer!!
+Don't forget to import these reducer on the main app reducer!!
 
 import * as fromTenant from './tenant/reducers/tenant.reducer';
 

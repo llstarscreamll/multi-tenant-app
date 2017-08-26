@@ -17,6 +17,7 @@ import { ES } from './../../translations/es';
 import { TenantService } from './../../services/tenant.service';
 import { Tenant } from './../../models/tenant';
 import * as utils from './../../utils/tenant-testing.util';
+import { AUTH_TESTING_COMPONENTS } from 'app/auth/utils/auth-testing-utils';
 
 /**
  * TenantSearchAdvancedComponent Tests.
@@ -36,7 +37,7 @@ describe('TenantSearchAdvancedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TenantSearchAdvancedComponent],
+      declarations: [...AUTH_TESTING_COMPONENTS, TenantSearchAdvancedComponent],
       imports: [
         utils.IMPORTS
       ],

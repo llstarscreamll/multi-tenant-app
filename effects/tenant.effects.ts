@@ -24,19 +24,6 @@ import { Effects } from './../../core/effects/abstract.effects';
  */
 @Injectable()
 export class TenantEffects extends Effects {
-  /**
-   * TenantEffects contructor.
-   */
-  public constructor(
-    private actions$: Actions,
-    private tenantService: TenantService,
-    private FormModelParserService: FormModelParserService,
-    private store: Store<fromRoot.State>
-  ) { super(); }
-
-  protected setMessages(message: AppMessage): Action {
-    return new tenant.SetMessagesAction(message);
-  }
 
   @Effect()
   getFormModel$: Observable<Action> = this.actions$
@@ -86,7 +73,7 @@ export class TenantEffects extends Effects {
     .switchMap(([action, state]) => {
       // data already exists and force == false?
       if (state.list && !action.payload) {
-        return [];
+        return empty();
       }
 
       return this.tenantService.list()
@@ -149,7 +136,7 @@ export class TenantEffects extends Effects {
         return of(new tenant.SetMessagesAction(msg));
       }
 
-      return [];
+      return empty();
     });
 
   @Effect()
@@ -200,4 +187,19 @@ export class TenantEffects extends Effects {
         })
         .catch((error: AppMessage) => this.handleError(error));
     });
+
+  /**
+   * TenantEffects contructor.
+   */
+  public constructor(
+    private actions$: Actions,
+    private tenantService: TenantService,
+    private FormModelParserService: FormModelParserService,
+    private store: Store<fromRoot.State>
+  ) { super(); }
+
+  protected setMessages(message: AppMessage): Action {
+    return new tenant.SetMessagesAction(message);
+  }
+
 }

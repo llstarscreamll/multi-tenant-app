@@ -16,6 +16,7 @@ import { TenantFormPage } from './tenant-form.page';
 import { TenantComponents } from './../../components/tenant';
 import { TenantPages } from './../../pages/tenant';
 import { TenantService } from './../../services/tenant.service';
+import { AUTH_TESTING_COMPONENTS } from 'app/auth/utils/auth-testing-utils';
 
 /**
  * TenantFormPage Tests.
@@ -35,6 +36,7 @@ describe('TenantFormPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        ...AUTH_TESTING_COMPONENTS,
         ...TenantComponents,
         ...TenantPages,
       ],

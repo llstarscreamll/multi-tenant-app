@@ -18,6 +18,7 @@ import { ES } from './../../translations/es';
 import { TenantService } from './../../services/tenant.service';
 import { Tenant } from './../../models/tenant';
 import * as utils from './../../utils/tenant-testing.util';
+import { AUTH_TESTING_COMPONENTS } from 'app/auth/utils/auth-testing-utils';
 
 /**
  * TenantsTableComponent Tests.
@@ -37,7 +38,7 @@ describe('TenantsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TenantsTableComponent],
+      declarations: [...AUTH_TESTING_COMPONENTS, TenantsTableComponent],
       imports: [
         utils.IMPORTS
       ],

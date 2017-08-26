@@ -6,7 +6,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { forOwn, isNull, isEmpty } from 'lodash';
 
 import * as fromRoot from './../../../reducers';
-
 import { FormModelParserService } from './../../../dynamic-form/services/form-model-parser.service';
 import * as tenantReducer from './../../reducers/tenant.reducer';
 import * as tenantActions from './../../actions/tenant.actions';
@@ -43,7 +42,7 @@ export class TenantSearchAdvancedComponent extends TenantAbstractComponent imple
    * the object config fields to show on advanced search form.
    * @type  Object
    */
-  public formModel: {search: any, options: any};
+  public formModel: any[];
 
   /**
    * Advanced search form group.

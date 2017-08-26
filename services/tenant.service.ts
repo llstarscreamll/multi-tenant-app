@@ -21,7 +21,7 @@ export class TenantService extends AbstractService {
    * API endpoint.
    * @type  string
    */
-  protected API_ENDPOINT = 'v1/tenants';
+	protected API_ENDPOINT = 'v1/tenants';
 
   /**
    * The key to access language strings.
@@ -47,7 +47,7 @@ export class TenantService extends AbstractService {
   /**
    * TenantService contructor.
    */
-  public constructor(
+	public constructor(
     private http: Http,
     private localStorageService: LocalStorageService,
     private translateService: TranslateService,
@@ -56,7 +56,7 @@ export class TenantService extends AbstractService {
   /**
    * Get the Tenant form model.
    */
-  public getFormModel(): Observable<Object> {
+  public getFormModel(): Observable<any[]> {
     this.setAuthorizationHeader();
 
     return this.http

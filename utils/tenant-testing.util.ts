@@ -10,7 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Observable } from 'rxjs/Observable';
 
-import { THEME } from './../../themes';
+import { THEME } from 'app/themes';
 import { CoreModule } from './../../core/core.module';
 import { DynamicFormModule } from './../../dynamic-form/dynamic-form.module';
 import * as fromRoot from './../../reducers';
@@ -45,71 +45,14 @@ export let tableColumns = [
 ];
 
 // Testing Models
-export let TenantOne: Tenant = {
-	'id': 'a1',
-	'name': 'Quidem voluptas ut atque quidem quia.',
-	'driver': 'mysql',
-	'host': '192.168.133.186',
-	'port': '8664',
-	'database': 'qui',
-	'username': 'qui',
-	'prefix': 'tempora',
-	'meta': 'Voluptas accusantium nam blanditiis voluptas. Sint qui quidem et et neque ratione.',
-	'created_at': '1971-09-05 07:43:37',
-	'updated_at': '2005-11-05 22:11:28',
-	'deleted_at': null
-};
-export let TenantTwo: Tenant = {
-	'id': 'b2',
-	'name': 'Architecto eum deserunt unde tempore cum quibusdam voluptatem assumenda.',
-	'driver': 'mysql',
-	'host': '10.15.137.84',
-	'port': '4391',
-	'database': 'veritatis',
-	'username': 'asperiores',
-	'prefix': 'molestias',
-	'meta': 'Odio culpa numquam aut doloribus aut voluptatibus. Quia dolores dolorem quo doloribus deserunt enim voluptatibus. Voluptatem quisquam voluptas earum voluptatum perspiciatis esse ut.',
-	'created_at': '1995-10-26 18:58:20',
-	'updated_at': '1996-07-04 01:39:29',
-	'deleted_at': null
-};
+export let TenantOne: Tenant = { 'id': 'a1', 'name': 'Ut voluptatem qui quis sequi accusamus expedita.', 'driver': 'mysql', 'host': '10.133.5.185', 'port': '5626', 'database': 'aut', 'username': 'praesentium', 'prefix': 'aut', 'meta': 'Enim ut sunt et. Id illo earum est. Nesciunt qui vel ut aut quis vero reiciendis. Ea dolorem cupiditate consequatur et.', 'created_at': '1989-09-14 23:09:52', 'updated_at': '1996-07-20 01:04:51', 'deleted_at': null };
+export let TenantTwo: Tenant = { 'id': 'b2', 'name': 'Sapiente deleniti natus quam saepe illo.', 'driver': 'mysql', 'host': '192.168.81.139', 'port': '5584', 'database': 'fuga', 'username': 'voluptatum', 'prefix': 'eaque', 'meta': 'Repudiandae ad vitae qui eum ipsa. Quia odio animi exercitationem quidem. In pariatur quibusdam sunt a.', 'created_at': '2013-01-07 10:59:38', 'updated_at': '2016-07-29 21:03:13', 'deleted_at': null };
 export let TenantList: Tenant[] = [
 	TenantOne,
 	TenantTwo,
 ];
 
-export const FORM_MODEL = {
-	'id': {
-		'name': 'id',
-		'type': 'text',
-		'placeholder': '',
-		'value': null, 'min': '',
-		'max': '',
-		'mainWrapperClass': 'col-sm-6',
-		'labelClass': '',
-		'controlWrapperClass': '',
-		'controlClass': '',
-		'break': true, 'visibility': { 'create': false, 'details': true, 'edit': false, 'search': true }, 'validation': ['numeric']
-	}, 'name': {
-		'name': 'name',
-		'type': 'text',
-		'placeholder': '',
-		'value': null, 'min': '',
-		'max': '',
-		'mainWrapperClass': 'col-sm-6',
-		'labelClass': '',
-		'controlWrapperClass': '',
-		'controlClass': '',
-		'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true }, 'validation': ['required',
-			'string']
-	}, 'driver': {
-		'name': 'driver',
-		'type': 'textarea',
-		'placeholder': '',
-		'value': null, 'min': '',
-		'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true }, 'validation': ['required', 'string']
-	}, 'host': { 'name': 'host', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true }, 'validation': ['required', 'string'] }, 'port': { 'name': 'port', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true }, 'validation': ['required', 'string'] }, 'database': { 'name': 'database', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true }, 'validation': ['required', 'string'] }, 'username': { 'name': 'username', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true }, 'validation': ['required', 'string'] }, 'password': { 'name': 'password', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true }, 'validation': ['required', 'string'] }, 'prefix': { 'name': 'prefix', 'type': 'text', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true }, 'validation': ['required', 'string'] }, 'meta': { 'name': 'meta', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true }, 'validation': ['required', 'string'] }, 'created_at': { 'name': 'created_at', 'type': 'datetime-local', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': false, 'details': true, 'edit': false, 'search': true }, 'validation': ['date:Y-m-d H:m:s'] }, 'updated_at': { 'name': 'updated_at', 'type': 'datetime-local', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': false, 'details': true, 'edit': false, 'search': true }, 'validation': ['date:Y-m-d H:m:s'] }, 'deleted_at': { 'name': 'deleted_at', 'type': 'datetime-local', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': false, 'details': true, 'edit': false, 'search': true }, 'validation': ['date:Y-m-d H:m:s'] }, '_options_': { 'model': 'tenant' }
-};
+export const FORM_MODEL = [{ 'name': 'id', 'type': 'text', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': true, 'visibility': { 'create': false, 'details': true, 'edit': false, 'search': true } }, { 'name': 'name', 'type': 'text', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true } }, { 'name': 'driver', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true } }, { 'name': 'host', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true } }, { 'name': 'port', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true } }, { 'name': 'database', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true } }, { 'name': 'username', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true } }, { 'name': 'password', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true } }, { 'name': 'prefix', 'type': 'text', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true } }, { 'name': 'meta', 'type': 'textarea', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': true, 'details': true, 'edit': true, 'search': true } }, { 'name': 'created_at', 'type': 'datetime-local', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': false, 'details': true, 'edit': false, 'search': true }, 'validation': ['date:Y-m-d H:i:s'] }, { 'name': 'updated_at', 'type': 'datetime-local', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': false, 'details': true, 'edit': false, 'search': true }, 'validation': ['date:Y-m-d H:i:s'] }, { 'name': 'deleted_at', 'type': 'datetime-local', 'placeholder': '', 'value': null, 'min': '', 'max': '', 'mainWrapperClass': 'col-sm-6', 'labelClass': '', 'controlWrapperClass': '', 'controlClass': '', 'break': false, 'visibility': { 'create': false, 'details': true, 'edit': false, 'search': true }, 'validation': ['date:Y-m-d H:i:s'] }];
 export const FORM_DATA = {
 };
 

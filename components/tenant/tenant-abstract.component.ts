@@ -8,7 +8,6 @@ import { forOwn, isNull } from 'lodash';
 
 import { FormModelParserService } from './../../../dynamic-form/services/form-model-parser.service';
 import { AppMessage } from './../../../core/models/appMessage';
-
 import * as fromRoot from './../../../reducers';
 
 import * as tenantActions from './../../actions/tenant.actions';
@@ -48,7 +47,7 @@ export abstract class TenantAbstractComponent {
    * Form model.
    * @type  Observable<Object>
    */
-  public formModel$: Observable<Object>;
+  public formModel$: Observable<any[]>;
 
   /**
    * Form data loaded from API.

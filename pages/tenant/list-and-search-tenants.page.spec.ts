@@ -17,6 +17,7 @@ import { ListAndSearchTenantsPage } from './list-and-search-tenants.page';
 import { TenantComponents } from './../../components/tenant';
 import { TenantPages } from './../../pages/tenant';
 import { TenantService } from './../../services/tenant.service';
+import { AUTH_TESTING_COMPONENTS } from 'app/auth/utils/auth-testing-utils';
 
 /**
  * ListAndSearchTenantsPage Tests.
@@ -37,6 +38,7 @@ describe('ListAndSearchTenantsPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        ...AUTH_TESTING_COMPONENTS,
         ...TenantComponents,
         ...TenantPages,
       ],
