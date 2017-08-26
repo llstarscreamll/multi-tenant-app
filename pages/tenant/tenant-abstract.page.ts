@@ -45,7 +45,7 @@ export abstract class TenantAbstractPage {
    * The form type to render.
    * @type  string
    */
-  public formType = 'create';
+  public formType: string = 'create';
 
   /**
    * Page title.
@@ -57,7 +57,7 @@ export abstract class TenantAbstractPage {
    * Language key access.
    * @type  string
    */
-  public langKey = 'TENANT.';
+  public langKey: string = 'TENANT.';
 
   /**
    * TenantAbstractPage constructor.
@@ -77,15 +77,15 @@ export abstract class TenantAbstractPage {
    * Set the form type based on the actual location path.
    */
   protected setFormType() {
-    const url: string = this.location.path();
-
+    let url: string = this.location.path();
+    
     if (url.search(/tenant\/+[a-z0-9]+\/details+$/i) > -1)
-      this.formType = 'details';
-
+      this.formType = "details";
+    
     if (url.search(/tenant\/+[a-z0-9]+\/edit+$/i) > -1)
-      this.formType = 'edit';
-
+      this.formType = "edit";
+    
     if (url.search(/tenant\/create$/i) > -1)
-      this.formType = 'create';
+      this.formType = "create";
   }
 }

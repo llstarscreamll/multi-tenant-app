@@ -17,7 +17,7 @@ import { ES } from './../../translations/es';
 import { TenantService } from './../../services/tenant.service';
 import { Tenant } from './../../models/tenant';
 import * as utils from './../../utils/tenant-testing.util';
-import { AUTH_TESTING_COMPONENTS } from 'app/auth/utils/auth-testing-utils';
+import { AUTH_TESTING_COMPONENTS } from "app/auth/utils/auth-testing-utils";
 
 /**
  * TenantSearchBasicComponent Tests.
@@ -27,7 +27,7 @@ import { AUTH_TESTING_COMPONENTS } from 'app/auth/utils/auth-testing-utils';
 describe('TenantSearchBasicComponent', () => {
   let fixture: ComponentFixture<TenantSearchBasicComponent>;
   let component: TenantSearchBasicComponent;
-  const testModel: Tenant = utils.TenantOne;
+  let testModel: Tenant = utils.TenantOne;
   let reactiveForm;
   let mockBackend: MockBackend;
   let store: Store<fromRoot.State>;
@@ -73,25 +73,25 @@ describe('TenantSearchBasicComponent', () => {
     spyOn(service, 'paginate').and.returnValue(Observable.from([{}]));
     fixture.detectChanges();
 
-    const searchField = fixture.nativeElement.querySelector('input[name=search]');
-    const searchBtn = fixture.nativeElement.querySelector('button[type=submit]');
+    let searchField = fixture.nativeElement.querySelector('input[name=search]');
+    let searchBtn = fixture.nativeElement.querySelector('button[type=submit]');
 
     expect(searchBtn).not.toBeNull();
     expect(searchField).not.toBeNull();
-
+    
     searchField.value = 'foo search';
     searchBtn.click();
-
+    
     fixture.detectChanges();
     tick();
 
     expect(service.paginate).toHaveBeenCalled();
   }));
 
-  it('should emit event on advanced search btn click', () => {
+  it('should emit event on advanced search btn click', () => {    
     spyOn(component.advancedSearchBtnClick, 'emit');
     fixture.detectChanges();
-    const advancedSearchBtn = fixture.nativeElement.querySelector('button[type=button].advanced-search-btn');
+    let advancedSearchBtn = fixture.nativeElement.querySelector('button[type=button].advanced-search-btn');
 
     expect(advancedSearchBtn).not.toBeNull();
 

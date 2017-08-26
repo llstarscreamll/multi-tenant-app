@@ -25,7 +25,7 @@ import { TenantAbstractComponent, SearchQuery } from './tenant-abstract.componen
 })
 export class TenantSearchAdvancedComponent extends TenantAbstractComponent implements OnInit, OnDestroy {
   @Input()
-  public debug = false;
+  public debug: boolean = false;
 
   @Output()
   public search = new EventEmitter<null>();
@@ -35,7 +35,7 @@ export class TenantSearchAdvancedComponent extends TenantAbstractComponent imple
    * be shown based on the form type.
    * @type  string
    */
-  public formType = 'search';
+  public formType: string = 'search';
 
   /**
    * Advanced search form model, this form is based on the main form model. Have
@@ -49,7 +49,7 @@ export class TenantSearchAdvancedComponent extends TenantAbstractComponent imple
    * @type  FormGrop
    */
   public form: FormGroup;
-
+  
   public constructor(
     protected store: Store<fromRoot.State>,
     protected formModelParserService: FormModelParserService,
@@ -77,7 +77,7 @@ export class TenantSearchAdvancedComponent extends TenantAbstractComponent imple
             .parseToSearch(model, this.tableColumns, this.langKey);
           this.form = this.formModelParserService
             .toFormGroup(this.formModel, this.formType);
-
+          
           // patch form values
           this.form.get('options').patchValue(this.searchQuery);
           this.form.get('search').patchValue(this.searchQuery);
@@ -91,7 +91,7 @@ export class TenantSearchAdvancedComponent extends TenantAbstractComponent imple
     if (this.form && this.formModelReady && this.formDataReady) {
       return true;
     }
-
+    
     return false;
   }
 
@@ -99,7 +99,7 @@ export class TenantSearchAdvancedComponent extends TenantAbstractComponent imple
    * Trigger the advenced search based on the given data.
    */
   public onAdvancedSearch() {
-    const options = {};
+    let options = {};
 
     // any advanced search field have changed?
     if (!this.form.get('search').pristine) {

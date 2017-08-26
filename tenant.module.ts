@@ -34,7 +34,7 @@ import { TenantRoutingModule } from './tenant-routing.module';
   ]
 })
 export class TenantModule {
-
+  
   public constructor(translate: TranslateService) {
     translate.setTranslation('es', ES, true);
   }

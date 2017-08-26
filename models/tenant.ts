@@ -11,7 +11,7 @@ export class Tenant {
 	port: string;
 	database: string;
 	username: string;
-	password?: string;
+	password: string;
 	prefix: string;
 	meta: string;
 	created_at: string;

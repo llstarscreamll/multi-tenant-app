@@ -17,7 +17,7 @@ import { ES } from './../../translations/es';
 import { TenantService } from './../../services/tenant.service';
 import { Tenant } from './../../models/tenant';
 import * as utils from './../../utils/tenant-testing.util';
-import { AUTH_TESTING_COMPONENTS } from 'app/auth/utils/auth-testing-utils';
+import { AUTH_TESTING_COMPONENTS } from "app/auth/utils/auth-testing-utils";
 
 /**
  * TenantSearchAdvancedComponent Tests.
@@ -27,7 +27,7 @@ import { AUTH_TESTING_COMPONENTS } from 'app/auth/utils/auth-testing-utils';
 describe('TenantSearchAdvancedComponent', () => {
   let fixture: ComponentFixture<TenantSearchAdvancedComponent>;
   let component: TenantSearchAdvancedComponent;
-  const testModel: Tenant = utils.TenantOne;
+  let testModel: Tenant = utils.TenantOne;
   let reactiveForm;
   let mockBackend: MockBackend;
   let store: Store<fromRoot.State>;
@@ -79,7 +79,7 @@ describe('TenantSearchAdvancedComponent', () => {
     fixture.detectChanges();
     tick();
 
-    const html = fixture.nativeElement;
+    let html = fixture.nativeElement;
 
     // should have app-alerts element
     expect(html.querySelector('app-alerts')).not.toBeNull();

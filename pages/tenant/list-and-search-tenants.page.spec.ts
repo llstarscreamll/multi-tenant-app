@@ -17,7 +17,7 @@ import { ListAndSearchTenantsPage } from './list-and-search-tenants.page';
 import { TenantComponents } from './../../components/tenant';
 import { TenantPages } from './../../pages/tenant';
 import { TenantService } from './../../services/tenant.service';
-import { AUTH_TESTING_COMPONENTS } from 'app/auth/utils/auth-testing-utils';
+import { AUTH_TESTING_COMPONENTS } from "app/auth/utils/auth-testing-utils";
 
 /**
  * ListAndSearchTenantsPage Tests.
@@ -33,7 +33,7 @@ describe('ListAndSearchTenantsPage', () => {
   let location: Location;
   let service: TenantService;
   let http: Http;
-  const testModel: Tenant = utils.TenantOne;
+  let testModel: Tenant = utils.TenantOne;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -58,7 +58,7 @@ describe('ListAndSearchTenantsPage', () => {
 
     mockBackend = getTestBed().get(MockBackend);
     utils.setupMockBackend(mockBackend);
-
+    
     fixture = getTestBed().createComponent(ListAndSearchTenantsPage);
     component = fixture.componentInstance;
   }));
@@ -80,7 +80,7 @@ describe('ListAndSearchTenantsPage', () => {
     fixture.detectChanges();
     tick();
 
-    const html = fixture.nativeElement;
+    let html = fixture.nativeElement;
 
     expect(html.querySelector('tenant-search-basic-component')).not.toBeNull('basic search component');
     expect(html.querySelector('tenants-table-component')).not.toBeNull('table list component');

@@ -86,7 +86,7 @@ export class TenantEffects extends Effects {
     .ofType(tenant.CREATE)
     .map((action: Action) => action.payload)
     .switchMap((payload: { item: Tenant, redirect: boolean}) => {
-      const actions: Array<Action> = [];
+      let actions: Array<Action> = [];
 
       return this.tenantService.create(payload.item)
         .mergeMap((createdItem: Tenant) => {
@@ -131,8 +131,8 @@ export class TenantEffects extends Effects {
     .map((action: Action) => action.payload)
     .switchMap((item: Tenant) => {
       // if the selected item is trashed, then flash a msg to notify the user
-      if (item && item.deleted_at) {
-        const msg = this.tenantService.getMessage('item_trashed', 'warning');
+      if(item && item.deleted_at) {
+        let msg = this.tenantService.getMessage('item_trashed', 'warning');
         return of(new tenant.SetMessagesAction(msg));
       }
 
@@ -144,7 +144,7 @@ export class TenantEffects extends Effects {
     .ofType(tenant.UPDATE)
     .map((action: Action) => action.payload)
     .switchMap((payload: { id: string | number, item: Tenant, redirect: boolean}) => {
-      const actions: Array<Action> = [];
+      let actions: Array<Action> = [];
 
       return this.tenantService.update(payload.id, payload.item)
         .mergeMap((updatedItem: Tenant) => {
@@ -172,14 +172,14 @@ export class TenantEffects extends Effects {
     .switchMap(action => {
       return this.tenantService.delete(action.id)
         .mergeMap(() => {
-          const actions = [
+          let actions = [
             // this will refresh the list if anybody needs it later
             new tenant.ListSuccessAction(null),
             new tenant.SetMessagesAction(this.tenantService.getMessage('delete_success')),
             go(['tenant'])
           ];
 
-          if (action.reloadListQuery) {
+          if(action.reloadListQuery) {
             actions.push(new tenant.PaginateAction(action.reloadListQuery));
           }
 

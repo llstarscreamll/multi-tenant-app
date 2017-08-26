@@ -42,7 +42,7 @@ export abstract class TenantAbstractComponent {
   protected itemsListSubscription$: Subscription;
   protected searchQuerySubscription$: Subscription;
   protected selectedItemSubscription$: Subscription;
-
+  
   /**
    * Form model.
    * @type  Observable<Object>
@@ -100,22 +100,22 @@ export abstract class TenantAbstractComponent {
    * Flags that tell as if the form is ready to be shown or not.
    * @type    boolean
    */
-  public formReady = false;
-  public formModelReady = false;
-  public formDataReady = false;
-  public selectedItemReady = false;
+  public formReady: boolean = false;
+  public formModelReady: boolean = false;
+  public formDataReady: boolean = false;
+  public selectedItemReady: boolean = false;
 
   /**
    * Language key access.
    * @type  string
    */
-  public langKey = 'TENANT.';
+  public langKey: string = 'TENANT.';
 
   /**
    * Form type (create|details|update). Used as an @Input() param on components.
    * @type  string
    */
-  public formType = 'create';
+  public formType: string = 'create';
 
   /**
    * The item id to load. Mainly given by the {id} url param, but is used as an
@@ -173,7 +173,7 @@ export abstract class TenantAbstractComponent {
       .subscribe(data => {
         if (data) {
           let ready = true;
-
+          
           forOwn(data, (item) => {
             if (isNull(item)) {
               ready = false;
@@ -191,7 +191,7 @@ export abstract class TenantAbstractComponent {
    * Trigger the basic search based on the given data.
    */
   public onSearch(data: Object = {}) {
-    const query = Object.assign({}, this.searchQuery, data, { advanced_search: false });
+    let query = Object.assign({}, this.searchQuery, data, { advanced_search: false });
     this.store.dispatch(new tenantActions.SetSearchQueryAction(query));
   }
 

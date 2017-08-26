@@ -45,7 +45,7 @@ export const TENANT = {
       'confirm_btn_text': 'Si, Eliminar',
       'cancel_btn_text': 'Cancelar',
     },
-
+    
     // form fields
     'fields': {
       'tenants.id': 'Id',
